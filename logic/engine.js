@@ -1,4 +1,4 @@
-const { HyperFormula } = require('hyperformula');
+import { HyperFormula } from 'hyperformula';
 
 const hf = HyperFormula.buildFromArray([
   [1, 2, '=A1+B1'],
@@ -37,4 +37,4 @@ function getCommitLog() {
   return commits;
 }
 
-module.exports = { editCell, getCommitLog, hf };
+export { hf, editCell, getCommitLog };

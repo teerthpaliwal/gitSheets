@@ -11,4 +11,4 @@ function formatCommit(commit) {
   return lines.join('\n');
 }
 
-module.exports = { formatCommit };
+export { cellName, formatCommit };

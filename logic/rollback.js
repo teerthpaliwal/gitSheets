@@ -8,4 +8,4 @@ function rollbackTo(commitId) {
   }
 }
 
-module.exports = { rollbackTo };
+export { rollbackTo };

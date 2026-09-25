@@ -1,6 +1,6 @@
-const { editCell, getCommitLog, hf } = require('./engine');
-const { rollbackTo } = require('./rollback');
-const { formatCommit } = require('./diff');
+import { hf, editCell, getCommitLog } from './engine.js';
+import { formatCommit } from './diff.js';
+import { rollbackTo } from './rollback.js';
 
 editCell(0, 0, 10); // commit 1: A1
 editCell(1, 0, 5);  // commit 2: A2
