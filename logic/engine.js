@@ -9,8 +9,10 @@ let commits = []; // in-memory commit log
 let commitCounter = 0;
 
 function editCell(row, col, value) {
-  const before = hf.getSheetValues(0); // snapshot BEFORE the edit
-  const changes = hf.setCellContents({ sheet: 0, row, col }, [[value]]);
+  const address = { sheet: 0, row, col };
+  const oldContent = hf.getCellSerialized(address);
+  const before = hf.getSheetValues(0);
+  const changes = hf.setCellContents(address, [[value]]);
 
   const changeRecords = changes.map(c => ({
     cellRef: `R${c.address.row}C${c.address.col}`,
@@ -21,7 +23,12 @@ function editCell(row, col, value) {
     isDirectEdit: c.address.row === row && c.address.col === col,
   }));
 
-  const commit = { id: ++commitCounter, timestamp: Date.now(), changes: changeRecords };
+  const commit = {
+    id: ++commitCounter,
+    timestamp: Date.now(),
+    edited: { row, col, oldContent },
+    changes: changeRecords,
+  };
   commits.push(commit);
   return commit;
 }
