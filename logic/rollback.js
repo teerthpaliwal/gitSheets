@@ -1,4 +1,4 @@
-const { hf, getCommitLog } = require('./engine');
+import { hf, getCommitLog } from './engine.js';
 
 function rollbackTo(commitId) {
   const commits = getCommitLog();
